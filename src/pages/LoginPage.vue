@@ -34,7 +34,7 @@ export default {
           email: email.value,
           password: password.value,
         });
-        if (error) throw error;
+        if (error) { throw error } else Notify.create('Login OK!')
       } catch (error) {
         //alert(error.error_description || error.message);
         Notify.create('errore nel login: ' + (error.error_decription || error.message))

@@ -19,7 +19,8 @@
 
 <script>
 import { ref } from "vue";
-import { } from "../supabase.js";
+import { supabase } from "boot/supabase";
+import { Notify } from 'quasar'
 
 export default {
   setup() {
@@ -29,13 +30,14 @@ export default {
     const handleSignin = async () => {
       try {
         // Use the Supabase provided method to handle the signin
-        const { error } = await supabase.auth.signIn({
+        const { error } = await supabase.auth.signInWithPassword({
           email: email.value,
           password: password.value,
         });
         if (error) throw error;
       } catch (error) {
-        alert(error.error_description || error.message);
+        //alert(error.error_description || error.message);
+        Notify.create('errore nel login: ' + (error.error_decription || error.message))
       }
     };
 
